@@ -28,7 +28,6 @@ A central finite difference of the second-order derivative is
 ```math
 \frac{\mathrm{d}^{2}f(x)}{\mathrm{d} x^{2}} = \frac{f(x+\Delta x) - 2f(x) + f(x-\Delta x)}{\Delta x^{2}} + O(\Delta x^{2}).
 ```
-
 ```julia-repl
 julia> fdcoefficient(n=2, m=2, d=:c)
 Dict{Int64, Rational{Int64}} with 3 entries:
@@ -52,7 +51,6 @@ A discrete approximation of the second-order differential operator is
   0 & 0 & 0 & \ldots &  0 &  1 & -2
 \end{array}\right).
 ```
-
 ```julia-repl
 julia> fdmatrix(5, n=2, m=2, d=:c, h=1//1)
 5×5 SparseArrays.SparseMatrixCSC{Rational{Int64}, Int64} with 13 stored entries:
