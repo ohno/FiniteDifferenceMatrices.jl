@@ -1,7 +1,3 @@
-```@meta
-CurrentModule = FiniteDifferenceMatrices
-```
-
 # FiniteDifferenceMatrices.jl
 
 [![Build Status](https://github.com/ohno/FiniteDifferenceMatrices.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/ohno/FiniteDifferenceMatrices.jl/actions/workflows/CI.yml?query=branch%3Amain)
