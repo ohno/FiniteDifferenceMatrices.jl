@@ -16,7 +16,7 @@ using SparseArrays
 This is a foolish implementation of the tables of [B. Fornberg, _Math. Comp._ **51** 699-706 (1988)](https://doi.org/10.1090/S0025-5718-1988-0935077-0) and [Wikipedia](https://en.wikipedia.org/wiki/Finite_difference_coefficient) by hand. This was coded to test the `fdcoefficient()`.
 
 ## Examples
-```jldoctest
+```julia-repl
 julia> FiniteDifferenceMatrices.Fornberg1988[:c,1,2]
 1×3 Matrix{Rational{Int64}}:
  -1//2  0//1  1//2
@@ -111,7 +111,7 @@ The coefficients of the central, ``n=1`` and ``m=2`` differences are ``c_{-1} = 
 \frac{\mathrm{d}f(x)}{\mathrm{d} x} = \frac{f(x+\Delta x) - f(x-\Delta x)}{2\Delta x} + O(\Delta x^{2})
 ```
 
-```jldoctest
+```julia-repl
 julia> fdcoefficient(n=1, m=2, d=:c)
 Dict{Int64, Rational{Int64}} with 3 entries:
   0  => 0//1
@@ -125,7 +125,7 @@ The coefficients of the central, ``n=1`` and ``m=1`` differences are ``c_{0} = -
 \frac{\mathrm{d}f(x)}{\mathrm{d} x} = \frac{f(x+\Delta x) - f(x)}{\Delta x} + O(\Delta x)
 ```
 
-```jldoctest
+```julia-repl
 julia> fdcoefficient(n=1, m=1, d=:f)
 Dict{Int64, Rational{Int64}} with 2 entries:
   0 => -1//1
@@ -137,7 +137,7 @@ The coefficients of the central, ``n=2`` and ``m=2`` differences are ``c_{-1} = 
 \frac{\mathrm{d}^{2}f(x)}{\mathrm{d} x^{2}} = \frac{f(x+\Delta x) - 2f(x) + f(x-\Delta x)}{\Delta x^{2}} + O(\Delta x^{2})
 ```
 
-```jldoctest
+```julia-repl
 julia> fdcoefficient(n=2, m=2, d=:c)
 Dict{Int64, Rational{Int64}} with 3 entries:
   0  => -2//1
@@ -177,7 +177,7 @@ This function calculates the differential coefficient $f^{(n)}(a)$, a value of t
 
 ## Examples
 
-```jldoctest
+```julia-repl
 julia> fdvalue(x -> x^2, 1.0)
 2.0000000000000004
 
@@ -232,7 +232,7 @@ The central, ``n=1`` and ``m=2`` discrete approximation of the differential oper
 \end{array}\right).
 ```
 
-```jldoctest
+```julia-repl
 julia> fdmatrix(5, n=1, m=2, d=:c, h=1//1)
 5×5 SparseArrays.SparseMatrixCSC{Rational{Int64}, Int64} with 8 stored entries:
    ⋅     1//2    ⋅      ⋅     ⋅  
@@ -258,7 +258,7 @@ The central, ``n=1`` and ``m=1`` discrete approximation of the differential oper
 \end{array}\right).
 ```
 
-```jldoctest
+```julia-repl
 julia> fdmatrix(5, n=1, m=1, d=:f, h=1//1)
 5×5 SparseArrays.SparseMatrixCSC{Rational{Int64}, Int64} with 9 stored entries:
  -1//1   1//1    ⋅      ⋅      ⋅  
@@ -284,7 +284,7 @@ The central, ``n=2`` and ``m=2`` discrete approximation of the differential oper
 \end{array}\right).
 ```
 
-```jldoctest
+```julia-repl
 julia> fdmatrix(5, n=2, m=2, d=:c, h=1//1)
 5×5 SparseArrays.SparseMatrixCSC{Rational{Int64}, Int64} with 13 stored entries:
  -2//1   1//1    ⋅      ⋅      ⋅  
