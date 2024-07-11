@@ -145,7 +145,7 @@ Dict{Int64, Rational{Int64}} with 3 entries:
   1  => 1//1
 ```
 """
-function fdcoefficient(; n::Int=1, m::Int=2, d=:c)
+function fdcoefficient(; n::Int=1, m::Int=2, d=:c)::Dict{Int64, Rational{Int64}}
   # `:central`  central,  `dⁿf/dxⁿ = [f(x+lh) + ... + f(x-lh)] / hⁿ + O(hᵐ), l = Int(m/2) + Int(ceil(n/2)) - 1`
   # `:forward`  forward,  `dⁿf/dxⁿ = [f(x)    + ... + f(x+mh)] / hⁿ + O(hᵐ)`
   # `:backward` backward, `dⁿf/dxⁿ = [f(x-mh) + ... + f(x)   ] / hⁿ + O(hᵐ)`
@@ -294,7 +294,7 @@ julia> fdmatrix(5, n=2, m=2, d=:c, h=1//1)
    ⋅      ⋅      ⋅     1//1  -2//1
 ```
 """
-function fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h=0.1)
+function fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h=0.1)::SparseArrays.SparseMatrixCSC{Rational{Int64}, Int64}
   C = fdcoefficient(n=n, m=m, d=d)
   return h^(-n) * spdiagm(Dict(i => fill(C[i],N-abs(i)) for i in keys(C))...)
 end
