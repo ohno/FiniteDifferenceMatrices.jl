@@ -163,7 +163,7 @@ function fdcoefficient(; n::Int=1, m::Int=2, d=:c)::Dict{Int64, Rational{Int64}}
   n in ℓ || throw(ArgumentError("n $n ∉ $ℓ"))
   A = @. (I' - I₀)^ℓ / factorial(ℓ)
   C = A \ (ℓ .== n)
-  return Dict(I[j] => C[j] for j in keys(I))
+  return Dict(I[j] => Rational(C[j]) for j in keys(I))
 end
 
 @doc raw"""
