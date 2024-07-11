@@ -197,7 +197,7 @@ julia> cos(0.0)
 1.0
 ```
 """
-function fdvalue(f, a; n::Int=1, m::Int=2, d=:c, h=0.1)
+function fdvalue(f, a; n::Int=1, m::Int=2, d=:c, h::Real=0.1)
   C = fdcoefficient(n=n, m=m, d=d)
   sum(C[i]*f(a+i*h) for i in keys(C)) / h^n
 end
@@ -294,9 +294,9 @@ julia> fdmatrix(5, n=2, m=2, d=:c, h=1//1)
    ⋅      ⋅      ⋅     1//1  -2//1
 ```
 """
-function fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h=0.1)::SparseArrays.SparseMatrixCSC{Rational{Int64}, Int64}
+function fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h::Real=0.1)
   C = fdcoefficient(n=n, m=m, d=d)
-  return h^(-n) * spdiagm(Dict(i => fill(C[i],N-abs(i)) for i in keys(C))...)
+  return spdiagm(Dict(i => fill(C[i],N-abs(i)) for i in keys(C))...) / h^n
 end
 
 end
