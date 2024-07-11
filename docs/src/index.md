@@ -51,7 +51,7 @@ A discrete approximation of the second-order differential operator is
 fdmatrix(5, n=2, m=2, d=:c, h=1//1)
 ```
 
-Please see the [API reference](https://ohno.github.io/FiniteDifferenceMatrices.jl/dev/API/) for details and more examples.
+Please see the [API reference](./API.md) for details and more examples.
 
 ## Developer's Guide
 
@@ -64,4 +64,9 @@ julia
 julia> include("dev/revice.jl")
 julia> include("dev/test.jl")
 julia> include("dev/docs.jl")
+```
+
+## API reference
+
+```@index
 ```
