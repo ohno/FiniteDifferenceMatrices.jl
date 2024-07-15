@@ -93,7 +93,7 @@ Fornberg1988 = Dict(
 This function returns a `Dict` of the finite difference coefficients ``c_i`` of
 
 ```math
-\frac{\mathrm{d}^n f(x)}{\mathrm{d}x^n} = \frac{1}{\Delta x^n} \sum_{i} c_i f(x+i\Delta x) + O(\Delta x^m).
+\frac{\mathrm{d}^n f}{\mathrm{d}x^n}(x) = \frac{1}{\Delta x^n} \sum_{i} c_i f(x+i\Delta x) + O(\Delta x^m).
 ```
 
 This implementation is based on [a post on discourse](https://discourse.julialang.org/t/generating-finite-difference-stencils/85876/5) by [@stevengj](https://discourse.julialang.org/u/stevengj/summary) and this function is tested to return results equivalent to [B. Fornberg, _Math. Comp._ **51** 699-706 (1988)](https://doi.org/10.1090/S0025-5718-1988-0935077-0).
@@ -108,7 +108,7 @@ This implementation is based on [a post on discourse](https://discourse.julialan
 
 The coefficients of the central, ``n=1`` and ``m=2`` differences are ``c_{-1} = -1/2, c_{0} = 0, c_{1} = 1/2``.
 ```math
-\frac{\mathrm{d}f(x)}{\mathrm{d} x} = \frac{f(x+\Delta x) - f(x-\Delta x)}{2\Delta x} + O(\Delta x^{2})
+\frac{\mathrm{d}f}{\mathrm{d} x}(x) = \frac{f(x+\Delta x) - f(x-\Delta x)}{2\Delta x} + O(\Delta x^{2})
 ```
 
 ```julia-repl
@@ -122,7 +122,7 @@ Dict{Int64, Rational{Int64}} with 3 entries:
 The coefficients of the central, ``n=1`` and ``m=1`` differences are ``c_{0} = -1, c_{1} = 1``.
 
 ```math
-\frac{\mathrm{d}f(x)}{\mathrm{d} x} = \frac{f(x+\Delta x) - f(x)}{\Delta x} + O(\Delta x)
+\frac{\mathrm{d}f}{\mathrm{d} x}(x) = \frac{f(x+\Delta x) - f(x)}{\Delta x} + O(\Delta x)
 ```
 
 ```julia-repl
@@ -134,7 +134,7 @@ Dict{Int64, Rational{Int64}} with 2 entries:
 
 The coefficients of the central, ``n=2`` and ``m=2`` differences are ``c_{-1} = 1, c_{0} = -2, c_{1} = 1``.
 ```math
-\frac{\mathrm{d}^{2}f(x)}{\mathrm{d} x^{2}} = \frac{f(x+\Delta x) - 2f(x) + f(x-\Delta x)}{\Delta x^{2}} + O(\Delta x^{2})
+\frac{\mathrm{d}^{2}f}{\mathrm{d} x^{2}}(x) = \frac{f(x+\Delta x) - 2f(x) + f(x-\Delta x)}{\Delta x^{2}} + O(\Delta x^{2})
 ```
 
 ```julia-repl

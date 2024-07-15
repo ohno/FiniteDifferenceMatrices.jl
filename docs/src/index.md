@@ -26,7 +26,7 @@ using FiniteDifferenceMatrices
 
 A central finite difference of the second-order derivative is
 ```math
-\frac{\mathrm{d}^{2}f(x)}{\mathrm{d} x^{2}} = \frac{f(x+\Delta x) - 2f(x) + f(x-\Delta x)}{\Delta x^{2}} + O(\Delta x^{2}).
+\frac{\mathrm{d}^{2}f}{\mathrm{d} x^{2}}(x) = \frac{f(x+\Delta x) - 2f(x) + f(x-\Delta x)}{\Delta x^{2}} + O(\Delta x^{2}).
 ```
 ```julia-repl
 julia> fdcoefficient(n=2, m=2, d=:c)
