@@ -1,5 +1,7 @@
 using FiniteDifferenceMatrices
 using Documenter
+
+import Pkg; Pkg.instantiate()
 using Printf
 using Markdown
 using CairoMakie
