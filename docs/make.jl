@@ -1,5 +1,8 @@
 using FiniteDifferenceMatrices
 using Documenter
+using Printf
+using Markdown
+using CairoMakie
 
 DocMeta.setdocmeta!(FiniteDifferenceMatrices, :DocTestSetup, :(using FiniteDifferenceMatrices); recursive=true)
 
