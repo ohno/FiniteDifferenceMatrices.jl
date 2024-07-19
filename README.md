@@ -57,7 +57,7 @@ julia> fdmatrix(5, n=2, m=2, d=:c, h=1//1)
    ⋅      ⋅      ⋅     1//1  -2//1
 ```
 
-Please see the [API reference](https://ohno.github.io/FiniteDifferenceMatrices.jl/dev/API/) for details and more examples.
+Please see the [Examples](https://ohno.github.io/FiniteDifferenceMatrices.jl/dev/examples/) and [API reference](https://ohno.github.io/FiniteDifferenceMatrices.jl/dev/API/) for details.
 
 ## Developer's Guide
 
