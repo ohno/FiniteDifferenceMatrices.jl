@@ -13,7 +13,7 @@ using SparseArrays
 @doc raw"""
 `Fornberg1988[d,n,m]`
 
-This is a foolish implementation of the tables of [B. Fornberg, _Math. Comp._ **51** 699-706 (1988)](https://doi.org/10.1090/S0025-5718-1988-0935077-0) and [Wikipedia](https://en.wikipedia.org/wiki/Finite_difference_coefficient) by hand. This was coded to test the `fdcoefficient()`.
+This is a foolish implementation of the tables of [B. Fornberg, _Math. Comp._ **51** 699-706 (1988)](https://doi.org/10.1090/S0025-5718-1988-0935077-0) and [Wikipedia](https://en.wikipedia.org/wiki/Finite_difference_coefficient) by hand. It was coded to test the `fdcoefficient()`.
 
 ## Examples
 ```julia-repl
@@ -88,7 +88,7 @@ Fornberg1988 = Dict(
 )
 
 @doc raw"""
-`fdcoefficient(; n::Int=1, m::Int=2, d=:c)`
+`fdcoefficient(; n::Int=1, m::Int=2, d=:c, t=Rational{Int})`
 
 This function returns a `Dict` of the finite difference coefficients ``c_i`` of
 
@@ -99,10 +99,11 @@ This function returns a `Dict` of the finite difference coefficients ``c_i`` of
 This implementation is based on [a post on discourse](https://discourse.julialang.org/t/generating-finite-difference-stencils/85876/5) by [@stevengj](https://discourse.julialang.org/u/stevengj/summary) and this function is tested to return results equivalent to [B. Fornberg, _Math. Comp._ **51** 699-706 (1988)](https://doi.org/10.1090/S0025-5718-1988-0935077-0).
 
 | Arguments | Description |
-| --- | --- |
+| :-- | :-- |
 | `n` | order of derivative ``n`` |
 | `m` | order of accuracy ``m`` |
 | `d` | direction, `:c` central, `:f` forward, `:b` backward |
+| `t` | type of coefficients, e.g.: `Rational{Int}`, `Rational{BigInt}`, `Rational{Float64}` |
 
 ## Examples
 
@@ -145,35 +146,40 @@ Dict{Int64, Rational{Int64}} with 3 entries:
   1  => 1//1
 ```
 """
-function fdcoefficient(; n::Int=1, m::Int=2, d=:c)::Dict{Int64, Rational{Int64}}
-  # `:central`  central,  `dⁿf/dxⁿ = [f(x+lh) + ... + f(x-lh)] / hⁿ + O(hᵐ), l = Int(m/2) + Int(ceil(n/2)) - 1`
-  # `:forward`  forward,  `dⁿf/dxⁿ = [f(x)    + ... + f(x+mh)] / hⁿ + O(hᵐ)`
-  # `:backward` backward, `dⁿf/dxⁿ = [f(x-mh) + ... + f(x)   ] / hⁿ + O(hᵐ)`
+function fdcoefficient(; n::Int=1, m::Int=2, d=:c, t=Rational{Int})
+  # `:c` central,  `dⁿf/dxⁿ = [f(x+lh) + ... + f(x-lh)] / hⁿ + O(hᵐ), l = Int(m/2) + Int(ceil(n/2)) - 1`
+  # `:f` forward,  `dⁿf/dxⁿ = [f(x)    + ... + f(x+mh)] / hⁿ + O(hᵐ)`
+  # `:b` backward, `dⁿf/dxⁿ = [f(x-mh) + ... + f(x)   ] / hⁿ + O(hᵐ)`
   n ≥ 1 || throw(ArgumentError("n = $n must satisfy n ≥ 1."))
   m ≥ 1 || throw(ArgumentError("m = $m must satisfy m ≥ 1."))
   if d == :c
-      iseven(m) || throw(ArgumentError("m = $m must be even number for central finite difference."))
+    iseven(m) || throw(ArgumentError("m = $m must be even number for central finite difference."))
+    I = (-(Int(m/2)+Int(ceil(n/2))-1):(Int(m/2)+Int(ceil(n/2))-1))
+  elseif d == :f
+    I = (0:n+m-1)
+  elseif d == :b
+    I = (-n-m+1:0)
+  else
+    throw(ArgumentError("d = $d must be one of :c, :f, :b."))
   end
-  I = NaN
-  I = d == :c ? (-(Int(m/2)+Int(ceil(n/2))-1):(Int(m/2)+Int(ceil(n/2))-1)) : I
-  I = d == :f ? (0:n+m-1) : I
-  I = d == :b ? (-n-m+1:0) : I
-  I₀ = 0//1
+  I₀ = convert(t, 0//1)
   ℓ = 0:length(I)-1
   n in ℓ || throw(ArgumentError("n $n ∉ $ℓ"))
   A = @. (I' - I₀)^ℓ / factorial(ℓ)
   C = A \ (ℓ .== n)
-  return Dict(I[j] => Rational(C[j]) for j in keys(I))
+  return Dict(I .=> convert.(t, C))
 end
 
 @doc raw"""
-`fdvalue(f, a; n::Int=1, m::Int=2, d=:c, h=0.1)`
+`fdvalue(f, a; n::Int=1, m::Int=2, d=:c, h=0.1, t=Rational{Int})`
 
 This function calculates the differential coefficient $f^{(n)}(a)$, a value of the derivative function $f^{(n)}=\frac{\mathrm{d}^n f}{\mathrm{d}x^n}$ at the point $a$.
 
 ```math
 \frac{\mathrm{d}^n f}{\mathrm{d}x^n} (a) = \frac{1}{h^n} \sum_{i} c_i f(a+ih) + O(\Delta x^m).
 ```
+
+The numerical error is not ignored in high orders ($3<n$, $4<m$) and a small grid spacing ($h<10^{-3}$). Please use high precision arithmetic (`h=big"0.001"` and `t=Rational{BigInt}`) in that case.
 
 ## Examples
 
@@ -197,22 +203,23 @@ julia> cos(0.0)
 1.0
 ```
 """
-function fdvalue(f, a; n::Int=1, m::Int=2, d=:c, h::Real=0.1)
-  C = fdcoefficient(n=n, m=m, d=d)
-  sum(C[i]*f(a+i*h) for i in keys(C)) / h^n
+function fdvalue(f, a; n::Int=1, m::Int=2, d=:c, h=0.1, t=Rational{Int})
+  C = fdcoefficient(n=n, m=m, d=d, t=t)
+  return sum(C[i]*f(a+i*h) for i in keys(C)) / h^n
 end
 
 @doc raw"""
-`fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h=0.1)`
+`fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h=0.1, t=Rational{Int})`
 
-This function returns a discrete approximation of a differential operator as a [sparse matrix](https://github.com/JuliaSparse/SparseArrays.jl).
+This function returns a discrete approximation of a differential operator as a [`SparseMatrixCSC`](https://github.com/JuliaSparse/SparseArrays.jl). The numerical error is not ignored in high orders ($3<n$, $4<m$) and a small grid spacing ($h<10^{-3}$). Please use high precision arithmetic (`h=big"0.001"` and `t=Rational{BigInt}`) in that case.
 
 | Arguments | Description |
-| --- | --- |
+| :-- | :-- |
 | `n` | order of derivative ``n`` |
 | `m` | order of accuracy ``m`` |
 | `d` | direction, `:c` central, `:f` forward, `:b` backward |
 | `h` | grid spacing ``\Delta x`` |
+| `t` | type of coefficients, e.g.: `Rational{Int}`, `Rational{BigInt}`, `Float64` |
 
 ## Examples
 
@@ -294,8 +301,8 @@ julia> fdmatrix(5, n=2, m=2, d=:c, h=1//1)
    ⋅      ⋅      ⋅     1//1  -2//1
 ```
 """
-function fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h::Real=0.1)
-  C = fdcoefficient(n=n, m=m, d=d)
+function fdmatrix(N::Int; n::Int=1, m::Int=2, d=:c, h=0.1, t=Rational{Int})
+  C = fdcoefficient(n=n, m=m, d=d, t=t)
   return spdiagm(Dict(i => fill(C[i],N-abs(i)) for i in keys(C))...) / h^n
 end
 
