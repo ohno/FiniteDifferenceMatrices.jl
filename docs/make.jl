@@ -10,7 +10,7 @@ makedocs(;
     format=Documenter.HTML(;
         canonical="https://ohno.github.io/FiniteDifferenceMatrices.jl",
         edit_link="main",
-        assets=String[],
+        assets=String["./assets/css/table.css"],
     ),
     pages=[
         "Home" => "index.md",
