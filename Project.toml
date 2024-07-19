@@ -1,7 +1,7 @@
 name = "FiniteDifferenceMatrices"
 uuid = "a7a66f33-e7b8-47af-b618-f9b5bea05f3d"
 authors = ["Shuhei Ohno"]
-version = "0.0.2"
+version = "0.0.3"
 
 [deps]
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
@@ -10,7 +10,8 @@ SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 julia = "1"
 
 [extras]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Test"]
+test = ["Test", "Printf"]
