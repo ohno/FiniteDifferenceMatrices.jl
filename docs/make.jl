@@ -3,6 +3,7 @@ using Documenter
 using Printf
 using Markdown
 using CairoMakie
+using SparseArrays
 
 DocMeta.setdocmeta!(FiniteDifferenceMatrices, :DocTestSetup, :(using FiniteDifferenceMatrices); recursive=true)
 
