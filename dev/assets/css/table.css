@@ -1,0 +1,9 @@
+.content table td,
+.content table th {
+  border-width: 1px;
+}
+
+.content table tbody tr:last-child td,
+.content table tbody tr:last-child th {
+  border-bottom-width: 1px;
+}
