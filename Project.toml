@@ -1,7 +1,7 @@
 name = "FiniteDifferenceMatrices"
 uuid = "a7a66f33-e7b8-47af-b618-f9b5bea05f3d"
 authors = ["Shuhei Ohno"]
-version = "0.0.3"
+version = "0.0.4"
 
 [deps]
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
