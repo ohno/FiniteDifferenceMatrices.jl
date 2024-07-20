@@ -51,7 +51,7 @@ A discrete approximation of the second-order differential operator is
 fdmatrix(5, n=2, m=2, d=:c, h=1//1)
 ```
 
-Please see the [Examples](./examples.md) and [API reference](./API.md) for details.
+Please see [Tables](./tables.md), [Examples](./examples.md) and [API reference](./API.md) for more information.
 
 ## Developer's Guide
 
