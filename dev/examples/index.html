@@ -9,7 +9,36 @@ m =  4    0.999999791728661594
 m =  6    0.999999999888447098
 m =  8    0.999999999999938038
 m = 10    0.999999999999999965
-m = 12    1.000000000000000000</code></pre><h2 id="Derivative"><a class="docs-heading-anchor" href="#Derivative">Derivative</a><a id="Derivative-1"></a><a class="docs-heading-anchor-permalink" href="#Derivative" title="Permalink"></a></h2><p>We approximate a function <code>f</code> to a vector <code>[f(0.0), f(0.1), f(0.2), ...]</code>. Its derivative is calculated as the product of a finite difference matrix and the vector. The values ​​at the ends of the domain have large errors.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+m = 12    1.000000000000000000</code></pre><p>Here is a comparison of <code>exp(0.0)</code> and <code>fdvalue(exp, 0.0, n=n, m=m, d=:f)</code>. The error is proportional to <span>$h^m$</span> (the solid line). But <code>Float64</code> values do not follow the scaling law due to the <a href="https://courses.grainger.illinois.edu/cs357/sp2021/assets/lectures/complete-slides/19-Finite-Difference.pdf">rounding errors</a> in small <span>$h$</span>. This problem is avoided by using <code>BigFloat</code>.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using CairoMakie
+CairoMakie.activate!(type = &quot;svg&quot;)
+
+for t in [Float64, BigFloat]
+  f = Figure(size=(420*2,420), fontsize=11.5)
+  for n in 1:2
+    ax = Axis(
+      f[1,n],
+      title = &quot;$t, n=$n&quot;,
+      xlabel = L&quot;h&quot;,
+      ylabel = L&quot;|f^{(n)} - \mathrm{fdvalue}|&quot;,
+      titlesize = 16.5,
+      ylabelsize = 16.5,
+      xlabelsize = 16.5,
+      xscale = log10,
+      yscale = log10,
+      limits = (8e-4,1.2e-1,1e-30,1)
+    )
+    for m in 1:9
+      X = [0.1, 0.05, 0.02, 0.01, 0.005, 0.002, 0.001]
+      Y = [abs(exp(0.0) - fdvalue(exp, 0.0, n=n, m=m, d=:f, h=convert(t,h))) for h in X]
+      a = Y[1] / X[1]^m
+      lines!(ax, [1e-4,1e0], x-&gt;a*x^m, color=m, colorrange=(1,9), colormap=:tab10, linestyle=:solid, linewidth=1)
+      scatter!(ax, X, Y, label=&quot;m = $m&quot;, color=m, colorrange=(1,9), colormap=:tab10)
+    end
+    axislegend(ax, position=:rb, nbanks=3, colgap=10, rowgap=0, padding=(0,0,0,0), framevisible=false)
+  end
+  display(f)
+end</code></pre><p><img src="../Float64.svg" alt/> <img src="../BigFloat.svg" alt/></p><h2 id="Derivative"><a class="docs-heading-anchor" href="#Derivative">Derivative</a><a id="Derivative-1"></a><a class="docs-heading-anchor-permalink" href="#Derivative" title="Permalink"></a></h2><p>We approximate a function <code>f</code> to a vector <code>[f(0.0), f(0.1), f(0.2), ...]</code>. Its derivative is calculated as the product of a finite difference matrix and the vector. The values ​​at the ends of the domain have large errors.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
 using CairoMakie
 CairoMakie.activate!(type = &quot;svg&quot;)
 
@@ -65,4 +94,4 @@ for τ in [0.0, 0.1, 1.0, 10.0]
 end
 lines!(ax, X, x -&gt; π^(-1//4)*exp(-1/2*x^2), label=&quot;g.s.&quot;, color=:black, linestyle=:dash, linewidth=2)
 axislegend(ax, position=:rt, rowgap=0, padding=(0,0,0,0), framevisible=false)
-f</code></pre><img src="087199e5.svg" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../tables/">« Tables</a><a class="docs-footer-nextpage" href="../API/">API reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Saturday 20 July 2024 05:48">Saturday 20 July 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+f</code></pre><img src="087199e5.svg" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../tables/">« Tables</a><a class="docs-footer-nextpage" href="../API/">API reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.5.0 on <span class="colophon-date" title="Tuesday 23 July 2024 10:07">Tuesday 23 July 2024</span>. Using Julia version 1.10.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
