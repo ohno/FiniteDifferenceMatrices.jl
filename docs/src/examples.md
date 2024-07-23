@@ -19,6 +19,44 @@ for m in 2:2:12
 end
 ```
 
+Here is a comparison of `exp(0.0)` and `fdvalue(exp, 0.0, n=n, m=m, d=:f)`. The error is proportional to ``h^m`` (the solid line). But `Float64` values do not follow the scaling law due to the [rounding errors](https://courses.grainger.illinois.edu/cs357/sp2021/assets/lectures/complete-slides/19-Finite-Difference.pdf) in small ``h``. This problem is avoided by using `BigFloat`.
+
+```@example
+using FiniteDifferenceMatrices
+using CairoMakie
+CairoMakie.activate!(type = "svg")
+
+for t in [Float64, BigFloat]
+  f = Figure(size=(420*2,420), fontsize=11.5)
+  for n in 1:2
+    ax = Axis(
+      f[1,n],
+      title = "$t, n=$n",
+      xlabel = L"h",
+      ylabel = L"|f^{(n)} - \mathrm{fdvalue}|",
+      titlesize = 16.5,
+      ylabelsize = 16.5,
+      xlabelsize = 16.5,
+      xscale = log10,
+      yscale = log10,
+      limits = (8e-4,1.2e-1,1e-30,1)
+    )
+    for m in 1:9
+      X = [0.1, 0.05, 0.02, 0.01, 0.005, 0.002, 0.001]
+      Y = [abs(exp(0.0) - fdvalue(exp, 0.0, n=n, m=m, d=:f, h=convert(t,h))) for h in X]
+      a = Y[1] / X[1]^m
+      lines!(ax, [1e-4,1e0], x->a*x^m, color=m, colorrange=(1,9), colormap=:tab10, linestyle=:solid, linewidth=1)
+      scatter!(ax, X, Y, label="m = $m", color=m, colorrange=(1,9), colormap=:tab10)
+    end
+    axislegend(ax, position=:rb, nbanks=3, colgap=10, rowgap=0, padding=(0,0,0,0), framevisible=false)
+  end
+  display(f)
+  save("$t.svg", f) # hide
+end
+```
+![](./Float64.svg)
+![](./BigFloat.svg)
+
 ## Derivative
 
 We approximate a function `f` to a vector `[f(0.0), f(0.1), f(0.2), ...]`. Its derivative is calculated as the product of a finite difference matrix and the vector. The values ​​at the ends of the domain have large errors.
