@@ -1,17 +1,17 @@
 using FiniteDifferenceMatrices
 using Documenter
 
-using Pkg
-Pkg.activate(".")
-Pkg.add("Printf")
-Pkg.add("Markdown")
-Pkg.add("SparseArrays")
-Pkg.add(name="CairoMakie", version="0.12.4")
+import Pkg
+# Pkg.activate(".")
+# Pkg.add("Printf")
+# Pkg.add("Markdown")
+# Pkg.add("SparseArrays")
+# Pkg.add(name="CairoMakie", version="0.12.4")
 Pkg.instantiate()
-using Printf
-using Markdown
-using SparseArrays
-using CairoMakie
+# using Printf
+# using Markdown
+# using SparseArrays
+# using CairoMakie
 
 DocMeta.setdocmeta!(FiniteDifferenceMatrices, :DocTestSetup, :(using FiniteDifferenceMatrices); recursive=true)
 
