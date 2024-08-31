@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="325pt"
+  height="300pt"
+  viewBox="0 0 325 300"
+>
+
+<!-- <rect width="325" height="300" fill="#FFFFFF"/> -->
+<path d="M 62.5, 25.0 L 37.5, 25.0 L 37.5,275.0 L 62.5,275.0" stroke="#24292E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M262.5, 25.0 L287.5, 25.0 L287.5,275.0 L262.5,275.0" stroke="#24292E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx=" 62.5" cy=" 50.0" r="7.5" fill="#4063D8"/>
+  <circle cx=" 87.5" cy=" 75.0" r="7.5" fill="#4063D8"/>
+  <circle cx="112.5" cy="100.0" r="7.5" fill="#4063D8"/>
+  <circle cx="137.5" cy="125.0" r="7.5" fill="#4063D8"/>
+  <circle cx="162.5" cy="150.0" r="7.5" fill="#4063D8"/>
+  <circle cx="187.5" cy="175.0" r="7.5" fill="#4063D8"/>
+  <circle cx="212.5" cy="200.0" r="7.5" fill="#4063D8"/>
+  <circle cx="237.5" cy="225.0" r="7.5" fill="#4063D8"/>
+  <circle cx="262.5" cy="250.0" r="7.5" fill="#4063D8"/>
+
+  <circle cx=" 87.5" cy=" 50.0" r="7.5" fill="#389826"/>
+  <circle cx="112.5" cy=" 75.0" r="7.5" fill="#389826"/>
+  <circle cx="137.5" cy="100.0" r="7.5" fill="#389826"/>
+  <circle cx="162.5" cy="125.0" r="7.5" fill="#389826"/>
+  <circle cx="187.5" cy="150.0" r="7.5" fill="#389826"/>
+  <circle cx="212.5" cy="175.0" r="7.5" fill="#389826"/>
+  <circle cx="237.5" cy="200.0" r="7.5" fill="#389826"/>
+  <circle cx="262.5" cy="225.0" r="7.5" fill="#389826"/>
+
+  <circle cx="112.5" cy=" 50.0" r="7.5" fill="#CB3C33"/>
+  <circle cx="137.5" cy=" 75.0" r="7.5" fill="#CB3C33"/>
+  <circle cx="162.5" cy="100.0" r="7.5" fill="#CB3C33"/>
+  <circle cx="187.5" cy="125.0" r="7.5" fill="#CB3C33"/>
+  <circle cx="212.5" cy="150.0" r="7.5" fill="#CB3C33"/>
+  <circle cx="237.5" cy="175.0" r="7.5" fill="#CB3C33"/>
+  <circle cx="262.5" cy="200.0" r="7.5" fill="#CB3C33"/>
+
+  <circle cx="137.5" cy=" 50.0" r="7.5" fill="#9558B2"/>
+  <circle cx="162.5" cy=" 75.0" r="7.5" fill="#9558B2"/>
+  <circle cx="187.5" cy="100.0" r="7.5" fill="#9558B2"/>
+  <circle cx="212.5" cy="125.0" r="7.5" fill="#9558B2"/>
+  <circle cx="237.5" cy="150.0" r="7.5" fill="#9558B2"/>
+  <circle cx="262.5" cy="175.0" r="7.5" fill="#9558B2"/>
+
+</svg>
