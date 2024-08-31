@@ -22,7 +22,10 @@ makedocs(;
     format=Documenter.HTML(;
         canonical="https://ohno.github.io/FiniteDifferenceMatrices.jl",
         edit_link="main",
-        assets=String["./assets/css/table.css"],
+        assets=String[
+            "./assets/fig/logo.ico",
+            "./assets/css/table.css",
+        ],
     ),
     pages=[
         "Home" => "index.md",
