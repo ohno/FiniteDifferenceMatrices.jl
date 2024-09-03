@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Examples · FiniteDifferenceMatrices.jl</title><meta name="title" content="Examples · FiniteDifferenceMatrices.jl"/><meta property="og:title" content="Examples · FiniteDifferenceMatrices.jl"/><meta property="twitter:title" content="Examples · FiniteDifferenceMatrices.jl"/><meta name="description" content="Documentation for FiniteDifferenceMatrices.jl."/><meta property="og:description" content="Documentation for FiniteDifferenceMatrices.jl."/><meta property="twitter:description" content="Documentation for FiniteDifferenceMatrices.jl."/><meta property="og:url" content="https://ohno.github.io/FiniteDifferenceMatrices.jl/examples/"/><meta property="twitter:url" content="https://ohno.github.io/FiniteDifferenceMatrices.jl/examples/"/><link rel="canonical" href="https://ohno.github.io/FiniteDifferenceMatrices.jl/examples/"/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/fig/logo.ico" rel="icon" type="image/x-icon"/><link href="../assets/css/table.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="FiniteDifferenceMatrices.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">FiniteDifferenceMatrices.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><a class="tocitem" href="../tables/">Tables</a></li><li class="is-active"><a class="tocitem" href>Examples</a><ul class="internal"><li><a class="tocitem" href="#Order-of-Accuracy"><span>Order of Accuracy</span></a></li><li><a class="tocitem" href="#Derivative"><span>Derivative</span></a></li><li><a class="tocitem" href="#Discrete-Approximation-of-Hamiltonian"><span>Discrete Approximation of Hamiltonian</span></a></li><li><a class="tocitem" href="#Variational-Method"><span>Variational Method</span></a></li><li><a class="tocitem" href="#Eigenvalue-Problem"><span>Eigenvalue Problem</span></a></li><li><a class="tocitem" href="#Imaginary-Time-Evolution"><span>Imaginary Time Evolution</span></a></li></ul></li><li><a class="tocitem" href="../API/">API reference</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Examples</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Examples</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/ohno/FiniteDifferenceMatrices.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/ohno/FiniteDifferenceMatrices.jl/blob/main/docs/src/examples.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h1><p>Here are some practical examples. Please refer to the <a href="../API/">API reference</a> for how to use each function.</p><h2 id="Order-of-Accuracy"><a class="docs-heading-anchor" href="#Order-of-Accuracy">Order of Accuracy</a><a id="Order-of-Accuracy-1"></a><a class="docs-heading-anchor-permalink" href="#Order-of-Accuracy" title="Permalink"></a></h2><p>Here is an example of <span>$\sin&#39;(0)=\cos(0)=1$</span>. The value asymptotically approaches the exact value as the order of the accuracy <span>$m$</span> increases.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using Printf
+
+for m in 2:2:12
+  @printf(&quot;m = %2d    %.18f\n&quot;, m, fdvalue(sin, 0.0, n=1, m=m, d=:c, h=big&quot;0.05&quot;))
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">m =  2    0.999583385413566576
+m =  4    0.999999791728661594
+m =  6    0.999999999888447098
+m =  8    0.999999999999938038
+m = 10    0.999999999999999965
+m = 12    1.000000000000000000</code></pre><p>Here is a comparison of <code>exp(0.0)</code> and <code>fdvalue(exp, 0.0, n=n, m=m, d=:f)</code>. The error is proportional to <span>$h^m$</span> (the solid line). But <code>Float64</code> values do not follow the scaling law due to the <a href="https://courses.grainger.illinois.edu/cs357/sp2021/assets/lectures/complete-slides/19-Finite-Difference.pdf">rounding errors</a> in small <span>$h$</span>. This problem is avoided by using <code>BigFloat</code>.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using CairoMakie
+CairoMakie.activate!(type = &quot;svg&quot;)
+
+for t in [Float64, BigFloat]
+  f = Figure(size=(420*2,420), fontsize=11.5)
+  for n in 1:2
+    ax = Axis(
+      f[1,n],
+      title = &quot;$t, n=$n&quot;,
+      xlabel = L&quot;h&quot;,
+      ylabel = L&quot;|f^{(n)} - \mathrm{fdvalue}|&quot;,
+      titlesize = 16.5,
+      ylabelsize = 16.5,
+      xlabelsize = 16.5,
+      xscale = log10,
+      yscale = log10,
+      limits = (8e-4,1.2e-1,1e-30,1)
+    )
+    for m in 1:9
+      X = [0.1, 0.05, 0.02, 0.01, 0.005, 0.002, 0.001]
+      Y = [abs(exp(0.0) - fdvalue(exp, 0.0, n=n, m=m, d=:f, h=convert(t,h))) for h in X]
+      a = Y[1] / X[1]^m
+      lines!(ax, [1e-4,1e0], x-&gt;a*x^m, color=m, colorrange=(1,9), colormap=:tab10, linestyle=:solid, linewidth=1)
+      scatter!(ax, X, Y, label=&quot;m = $m&quot;, color=m, colorrange=(1,9), colormap=:tab10)
+    end
+    axislegend(ax, position=:rb, nbanks=3, colgap=10, rowgap=0, padding=(0,0,0,0), framevisible=false)
+  end
+  display(f)
+end</code></pre><p><img src="../Float64.svg" alt/> <img src="../BigFloat.svg" alt/></p><h2 id="Derivative"><a class="docs-heading-anchor" href="#Derivative">Derivative</a><a id="Derivative-1"></a><a class="docs-heading-anchor-permalink" href="#Derivative" title="Permalink"></a></h2><p>We approximate a function <code>f</code> to a vector <code>[f(0.0), f(0.1), f(0.2), ...]</code>. Its derivative is calculated as the product of a finite difference matrix and the vector. The values ​​at the ends of the domain have large errors.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using CairoMakie
+CairoMakie.activate!(type = &quot;svg&quot;)
+
+# domain X, function Y, differential operator D
+Δx = 0.2
+X = -3.7:Δx:3.7
+Y = sin.(X)
+D = fdmatrix(length(X), n=1, m=2, d=:c, h=Δx)
+
+# derivative
+Z1 = cos.(X) # analytical derivative
+Z2 = D*Y     # numerical derivative
+
+# plot
+f = Figure(size=(420,300), fontsize=11.5)
+ax = Axis(f[1,1], xlabel=L&quot;x&quot;, ylabel=L&quot;\sin&#39;(x)&quot;, ylabelsize=16.5, xlabelsize=16.5)
+lines!(ax, X, Z1, label=&quot;analytical&quot;)
+scatter!(ax, X, Z2, label=&quot;numerical&quot;)
+axislegend(ax, position=:cb, rowgap=0, padding=(5,5,2,2), framevisible=false)
+f</code></pre><img src="1c9a6804.svg" alt="Example block output"/><h2 id="Discrete-Approximation-of-Hamiltonian"><a class="docs-heading-anchor" href="#Discrete-Approximation-of-Hamiltonian">Discrete Approximation of Hamiltonian</a><a id="Discrete-Approximation-of-Hamiltonian-1"></a><a class="docs-heading-anchor-permalink" href="#Discrete-Approximation-of-Hamiltonian" title="Permalink"></a></h2><p>Discrete approximations (the central finite difference of the second-order accuracy) of the Hamiltonian <span>$\hat{H} = - \frac{\hbar^2}{2m} \frac{\mathrm{d}^2}{\mathrm{d}x^2} + V(x)$</span> , the wave function <span>$\psi(x)$</span> and the energy <span>$E$</span> are written as</p><p class="math-container">\[\pmb{H}
+= - \frac{\hbar^2}{2m} \cdot \frac{1}{h^2}
+  \left(\begin{array}{ccccccc}
+    -2 &amp; 1 &amp; 0 &amp; \ldots \\
+    1 &amp; -2 &amp; 1 &amp; \ldots \\
+    0 &amp; 1 &amp; -2 &amp; \ldots \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots \\
+  \end{array}\right)
+  +
+  \left(\begin{array}{ccccccc}
+    V(x_1) &amp; 0 &amp; 0 &amp; \ldots \\
+    0 &amp; V(x_2) &amp; 0 &amp; \ldots \\
+    0 &amp; 0 &amp; V(x_3) &amp; \ldots \\
+    \vdots &amp; \vdots &amp; \vdots &amp; \ddots \\
+  \end{array}\right),
+\\
+\pmb{\psi}
+=
+\left(\begin{array}{c}
+  \psi(x_1) \\
+  \psi(x_2) \\
+  \psi(x_3) \\
+  \vdots \\
+\end{array}\right),
+\\
+E = \frac{\langle\psi|\hat{H}|\psi\rangle}{\langle\psi|\psi\rangle}
+\simeq \frac{\pmb{\psi}^\ast \pmb{H} \pmb{\psi}}{\pmb{\psi}^\ast \pmb{\psi}}.\]</p><p>Here, we show the non-dimensionalized Hamiltonian of the <a href="https://ohno.github.io/Antique.jl/stable/HarmonicOscillator/">harmonic oscillator</a>, its ground state wave function and the energy:</p><p class="math-container">\[\hat{H} = - \frac{1}{2} \frac{\mathrm{d}^2}{\mathrm{d}x^2} + \frac{1}{2}x^2,
+\\
+\psi_0(x) = \pi^{-1/4} \exp \left( -\frac{1}{2}x^2 \right),
+\\
+E_0 = \frac{\langle \psi_0 | \hat{H} | \psi_0 \rangle}{\langle \psi_0 | \psi_0 \rangle} = \frac{1}{2}.\]</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using SparseArrays
+
+Δx = 0.1
+X = -10:Δx:10
+H = -1/2 * fdmatrix(length(X), n=2, m=2, d=:c, h=Δx) + spdiagm([1/2*x^2 for x in X])
+ψ = [π^(-1//4)*exp(-1/2*x^2) for x in X]
+# S = sqrt(Δx * ψ&#39; * ψ) # norm
+E = (ψ&#39; * H * ψ) / (ψ&#39; * ψ) # energy
+
+@show E</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">0.49968776025398826</code></pre><h2 id="Variational-Method"><a class="docs-heading-anchor" href="#Variational-Method">Variational Method</a><a id="Variational-Method-1"></a><a class="docs-heading-anchor-permalink" href="#Variational-Method" title="Permalink"></a></h2><p>This is an example of a variational calculation for the harmonic oscillator. We optimize the parameter <span>$\alpha$</span> to minimize the energy <span>$E$</span>:</p><p class="math-container">\[\frac{\partial E}{\partial \alpha} = 0.\]</p><p>The energy <span>$E$</span> depends on the parameter <span>$\alpha$</span> because the trial wave function <span>$\psi_\mathrm{trial}$</span> depends on the parameter <span>$\alpha$</span>:</p><p class="math-container">\[\psi_\mathrm{trial}(x) = \left( \frac{2\alpha}{\pi} \right)^{\frac{1}{4}} \exp \left( - \alpha x^2 \right).\]</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using SparseArrays
+using Printf
+
+Δx = 0.1
+X = -10:Δx:10
+H = -1/2 * fdmatrix(length(X), n=2, m=8, d=:c, h=Δx) + spdiagm([1/2*x^2 for x in X])
+
+println(&quot;  α              E&quot;)
+println(&quot;------------------&quot;)
+for α in 0.1:0.1:1.0
+  ψ = [((2*α)/π)^(1//4)*exp(-α*x^2) for x in X]
+  E = (ψ&#39; * H * ψ) / (ψ&#39; * ψ)
+  @printf(&quot;%.1f    %.9f\n&quot;, α, E)
+end
+println(&quot;------------------&quot;)
+println(&quot;minimum:&quot;)
+println(&quot;  α = 0.5&quot;)
+println(&quot;  E = 0.5&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">  α              E
+------------------
+0.1    1.299999995
+0.2    0.725000000
+0.3    0.566666667
+0.4    0.512500000
+0.5    0.500000000
+0.6    0.508333333
+0.7    0.528571428
+0.8    0.556250000
+0.9    0.588888888
+1.0    0.624999999
+------------------
+minimum:
+  α = 0.5
+  E = 0.5</code></pre><p>In this case, the trial wave function of <span>$\alpha=1/2$</span> is equal to the exact solution. Note that the &quot;best&quot; trial wave function (that gives the lowest energy, according to the variational principle) may not yield a better value for other properties (such as the norm or expected values). Please see <a href="https://doi.org/10.1021/acs.jchemed.8b00959">J. F. Pérez-Torres, J. Chem. Educ. 2019, 96, 4, 704–707 (2019)</a>.</p><pre><code class="language-julia hljs">using CairoMakie
+CairoMakie.activate!(type = &quot;svg&quot;)
+
+f = Figure(size=(420,300), fontsize=11.5)
+ax = Axis(f[1,1], xlabel=L&quot;x&quot;, ylabel=L&quot;\psi(x)&quot;, limits=(-5,5,0.0,0.8), titlesize=16.5, ylabelsize=16.5, xlabelsize=16.5)
+for α in 0.3:0.1:0.6
+  ψ = [((2*α)/π)^(1//4)*exp(-α*x^2) for x in X]
+  lines!(ax, X, ψ, label=&quot;α = $α&quot;)
+end
+lines!(ax, X, x -&gt; π^(-1//4)*exp(-1/2*x^2), label=&quot;exact&quot;, color=:black, linestyle=:dash, linewidth=2)
+axislegend(ax, position=:rt, rowgap=0, padding=(0,0,0,0), framevisible=false)
+f</code></pre><img src="84bbb89f.svg" alt="Example block output"/><h2 id="Eigenvalue-Problem"><a class="docs-heading-anchor" href="#Eigenvalue-Problem">Eigenvalue Problem</a><a id="Eigenvalue-Problem-1"></a><a class="docs-heading-anchor-permalink" href="#Eigenvalue-Problem" title="Permalink"></a></h2><p>The eigenvalue problem of the Hamiltonian matrix <span>$\pmb{H}$</span> gives approximate energies and approximate wave functions. Please refer to the <a href="https://ohno.github.io/Antique.jl/stable/HarmonicOscillator/">Antique.jl</a> for the closed forms of the analytical solutions.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using SparseArrays
+using LinearAlgebra
+# using ArnoldiMethod
+using Printf
+import Antique
+HO = Antique.HarmonicOscillator(k=1.0, m=1.0, ℏ=1.0)
+
+Δx = 0.1
+X = -5:Δx:5
+I = keys(X)
+T = -HO.ℏ^2/2/HO.m * fdmatrix(length(X), n=2, m=8, d=:c, h=Δx)
+V = Diagonal([Antique.V(HO,x) for x in X])
+H = T + V
+
+# decomp, history = partialschur(H, nev=10, tol=1e-9, which=SR())
+# E = real.(decomp.eigenvalues)
+E, ψ = eigen(Matrix{Float64}(H))
+
+println(&quot; n         numerical        analytical&quot;)
+println(&quot;--    --------------    --------------&quot;)
+for n in 0:9
+  @printf(&quot;%2d    %.12f    %.12f\n&quot;, n, E[n+1], Antique.E(HO, n=n))
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"> n         numerical        analytical
+--    --------------    --------------
+ 0    0.499999999985    0.500000000000
+ 1    1.500000001062    1.500000000000
+ 2    2.500000034551    2.500000000000
+ 3    3.500000555298    3.500000000000
+ 4    4.500006084209    4.500000000000
+ 5    5.500049973732    5.500000000000
+ 6    6.500321040771    6.500000000000
+ 7    7.501649561884    7.500000000000
+ 8    8.506863078481    8.500000000000
+ 9    9.523313467073    9.500000000000</code></pre><p>The vector <code>ψ[:,1]</code> corresponds to the eigenfunction for the ground state (<span>$n=0$</span>) and the vector <code>ψ[:,n+1]</code> corresponds to the eigenfunctions of the <span>$n$</span>-th excited state.</p><pre><code class="language-julia hljs">using CairoMakie
+CairoMakie.activate!(type = &quot;svg&quot;)
+
+f = Figure(size=(840,600), fontsize=11.5)
+for i in 1:4
+    n = i - 1
+    ax = Axis(
+      f[Int(ceil(i/2)),rem(i-1,2)+1],
+      xlabel = L&quot;x&quot;,
+      ylabel = L&quot;|\psi(x)|^2&quot;,
+      titlesize = 16.5,
+      ylabelsize = 16.5,
+      xlabelsize = 16.5,
+    )
+  lines!(ax, -5..5, x -&gt; Antique.ψ(HO,x,n=n)^2, label=&quot;analytical&quot;, color=:black, linestyle=:solid, linewidth=1)
+  scatter!(ax, X, (ψ[:,i] / sqrt(Δx)) .^ 2, label=&quot;numerical&quot;, markersize=6)
+  axislegend(ax, &quot;n = $n&quot;, position=:rt, rowgap=0, framevisible=false, titlesize=15.0)
+end
+f</code></pre><p><img src="../eigen.svg" alt/></p><h2 id="Imaginary-Time-Evolution"><a class="docs-heading-anchor" href="#Imaginary-Time-Evolution">Imaginary Time Evolution</a><a id="Imaginary-Time-Evolution-1"></a><a class="docs-heading-anchor-permalink" href="#Imaginary-Time-Evolution" title="Permalink"></a></h2><p>The imaginary time Schrödinger equation and its formal solution are written as</p><p class="math-container">\[-\frac{\partial \varPsi(x,\tau)}{\partial \tau}
+= \hat{H} \varPsi(x,\tau),
+\\
+\varPsi(x,\tau)
+= \exp \left[- \hat{H} \tau \right] \varPsi(x,0).\]</p><p>It is projected to the ground state (g.s.) in the long imaginary-time limit <span>$\tau\rightarrow\infty$</span>. It is able to calculate the imaginary time evolution by a direct treatment because Julia has built-in matrix exponentials. The efficient matrix exponentials for sparse matrices are supported in <a href="https://github.com/fmentink/FastExpm.jl">FastExpm.jl</a>.</p><pre><code class="language-julia hljs">using FiniteDifferenceMatrices
+using SparseArrays
+using CairoMakie
+CairoMakie.activate!(type = &quot;svg&quot;)
+
+# domain X, Hamiltonian H, initial state ψ₀
+Δx = 0.1
+X = -10:Δx:10
+H = -1/2 * fdmatrix(length(X), n=2, m=4, d=:c, h=Δx) + spdiagm([1/2*x^2 for x in X])
+Ψ₀ = [-2.5 ≤ x ≤ 2.5 ? 0.2 : 0.0 for x in X]
+
+# plot
+f = Figure(size=(420,300), fontsize=11.5)
+ax = Axis(f[1,1], xlabel=&quot;x&quot;, ylabel=&quot;Ψ(x,τ)&quot;, limits=(-5,5,0.0,0.8), titlesize=16.5, ylabelsize=16.5, xlabelsize=16.5)
+for τ in [0.0, 0.1, 1.0, 10.0]
+  Ψ = exp(-Matrix{Float64}(H)*τ) * Ψ₀
+  lines!(ax, X, Vector{Float64}(real(Ψ / sqrt(Δx * Ψ&#39; * Ψ))), label=&quot;τ = $τ&quot;)
+end
+lines!(ax, X, x -&gt; π^(-1//4)*exp(-1/2*x^2), label=&quot;g.s.&quot;, color=:black, linestyle=:dash, linewidth=2)
+axislegend(ax, position=:rt, rowgap=0, padding=(0,0,0,0), framevisible=false)
+f</code></pre><img src="3f32a96a.svg" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../tables/">« Tables</a><a class="docs-footer-nextpage" href="../API/">API reference »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.6.0 on <span class="colophon-date" title="Tuesday 3 September 2024 11:27">Tuesday 3 September 2024</span>. Using Julia version 1.10.5.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
